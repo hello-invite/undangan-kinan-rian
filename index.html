@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Undangan Pernikahan Kinan &amp; Rian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Pinyon+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14295c;--gold:#d9b878;--paper:#f0f0f0;--ink:#14295c}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{font-family:'Cormorant Garamond',serif;color:var(--ink);background:var(--paper);overflow-x:hidden}
+body.lock{overflow:hidden;height:100dvh}
+#wrap{max-width:520px;margin:0 auto}
+
+/* COVER */
+#cover{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity 1s ease,transform 1s ease,visibility 1s}
+#cover .stage{position:relative;width:min(100vw,520px);aspect-ratio:478/850;max-height:100dvh}
+#cover video{width:100%;height:100%;display:block;object-fit:cover}
+#cover .name{position:absolute;left:0;right:0;top:75%;text-align:center;font-size:1rem;font-weight:500}
+#cover .name b{display:block;font:400 2rem 'Pinyon Script',cursive;margin-top:0}
+#cover .pulse{position:absolute;left:24%;width:54%;top:88%;height:6.4%;border-radius:14px;animation:pulse 1.8s ease-out infinite}
+#cover.open{opacity:0;visibility:hidden;transform:scale(1.12)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(20,41,92,.45)}100%{box-shadow:0 0 0 18px rgba(20,41,92,0)}}
+
+/* SLIDES */
+.slide{position:relative;overflow:hidden;opacity:0;transform:translateY(40px);filter:blur(4px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1),filter 1s}
+.slide.show{opacity:1;transform:none;filter:none}
+.slide video{width:100%;display:block;aspect-ratio:478/850;object-fit:cover;background:var(--paper)}
+.ov{position:absolute;left:0;right:0;text-align:center}
+.hit{position:absolute;cursor:pointer;display:block}
+.btn{display:inline-block;border:1px solid var(--gold);border-radius:999px;padding:9px 22px;background:var(--navy);color:#fff;font:400 .8rem 'Poppins';letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:transform .25s,background .25s}
+.btn:active{transform:scale(.95);background:var(--gold);color:var(--navy)}
+.cd{position:absolute;left:14%;right:11%;top:32.8%;height:7.6%;display:flex;align-items:center;justify-content:space-around;color:#fff}
+.cd div{text-align:center;line-height:1}
+.cd b{display:block;font:600 1.55rem 'Cormorant Garamond',serif;color:#fff}
+.cd span{display:block;margin-top:3px;font:400 .55rem 'Poppins';letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.copy{position:absolute;left:59%;width:24%;height:4.6%;border:1px solid rgba(255,255,255,.85);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font:400 .72rem 'Poppins';cursor:pointer;transition:background .25s,transform .25s}
+.copy:active{background:var(--gold);color:var(--navy);transform:scale(.95)}
+
+/* RSVP */
+#rsvp{padding:70px 28px 50px;text-align:center;background:linear-gradient(#f0f0f0,#e6ebf5)}
+#rsvp h2{font:400 2.9rem 'Pinyon Script',cursive;line-height:1.2;margin-bottom:8px}
+#rsvp p{font-size:1.05rem;font-weight:500;opacity:.85}
+form{display:grid;gap:12px;margin-top:26px;text-align:left}
+input,select,textarea{width:100%;padding:14px 16px;border:1px solid rgba(20,41,92,.35);border-radius:14px;background:#fff;color:var(--ink);font:400 .9rem 'Poppins'}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--navy);outline-offset:1px}
+form .btn{padding:14px;font-size:.9rem;border-radius:14px}
+#wishes{max-height:380px;overflow-y:auto;text-align:left;margin-top:30px;display:grid;gap:10px;padding-right:4px;align-content:start}
+.w{background:#fff;border:1px solid rgba(20,41,92,.2);border-radius:14px;padding:12px 14px}
+.w b{font:600 1.1rem 'Cormorant Garamond',serif}
+.w span{display:block;font:400 .68rem 'Poppins';opacity:.65;margin:2px 0 6px}
+.w p{font:400 .85rem 'Poppins';white-space:pre-wrap;word-break:break-word;opacity:1}
+
+/* LAIN-LAIN */
+#music{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:40;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:var(--navy);color:#fff;font-size:1.1rem;display:none;cursor:pointer}
+#music.spin{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#menuBtn{position:fixed;right:14px;bottom:calc(68px + env(safe-area-inset-bottom));z-index:40;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:var(--navy);display:none;align-items:center;justify-content:center;cursor:pointer}
+#menu{position:fixed;right:14px;bottom:calc(122px + env(safe-area-inset-bottom));z-index:41;width:200px;padding:8px;border-radius:18px;background:var(--navy);border:1px solid var(--gold);box-shadow:0 12px 30px -10px rgba(20,41,92,.6);transform-origin:bottom right;transform:scale(.6);opacity:0;visibility:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s,visibility .25s}
+#menu.open{transform:scale(1);opacity:1;visibility:visible}
+#menu a{display:block;padding:11px 14px;border-radius:12px;color:#fff;text-decoration:none;font:400 .85rem 'Poppins';cursor:pointer}
+#menu a:active{background:rgba(217,184,120,.3)}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:9px 20px;border-radius:99px;font:400 .82rem 'Poppins';opacity:0;transition:.4s;z-index:60;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body class="lock">
+
+<div id="cover">
+  <div class="stage">
+    <video poster="01-cover.webp" autoplay muted loop playsinline preload="auto"><source src="01-cover.mp4" type="video/mp4"></video>
+    <div class="name">Kepada Yth.<b id="guest">Tamu Undangan</b></div>
+    <div class="pulse"></div>
+  </div>
+</div>
+
+<button id="music" aria-label="Musik">♪</button>
+<button id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+<nav id="menu" aria-label="Menu undangan">
+  <a data-t="s-pembuka">Pembuka</a><a data-t="s-mempelai">Mempelai</a><a data-t="s-tanggal">Hari Bahagia</a><a data-t="s-acara">Lokasi Acara</a><a data-t="s-galeri">Galeri</a><a data-t="s-hadiah">Tanda Kasih</a><a data-t="rsvp">RSVP &amp; Ucapan</a>
+</nav>
+<div id="toast"></div>
+
+<main id="wrap">
+  <div class="slide" id="s-pembuka"><video poster="02-nama.webp" muted loop playsinline preload="auto"><source src="02-nama.mp4" type="video/mp4"></video></div>
+  <div class="slide"><video poster="03-ayat.webp" muted loop playsinline preload="auto"><source src="03-ayat.mp4" type="video/mp4"></video></div>
+  <div class="slide" id="s-mempelai"><video poster="04-mempelai.webp" muted loop playsinline preload="auto"><source src="04-mempelai.mp4" type="video/mp4"></video></div>
+
+  <div class="slide" id="s-tanggal"><video poster="05-savedate.webp" muted loop playsinline preload="auto"><source src="05-savedate.mp4" type="video/mp4"></video>
+    <div class="cd" id="cd"></div>
+    <div class="ov" style="top:43.5%"><a class="btn" id="saveDate" href="#" target="_blank" rel="noopener">Simpan di kalender</a></div>
+  </div>
+
+  <div class="slide" id="s-acara"><video poster="06-thewedding.webp" muted loop playsinline preload="auto"><source src="06-thewedding.mp4" type="video/mp4"></video>
+    <a class="hit" id="maps" href="#" target="_blank" rel="noopener" aria-label="Lokasi acara" style="left:30%;right:29%;top:75.2%;height:5.6%"></a>
+  </div>
+
+  <div class="slide" id="s-galeri"><video poster="07-gallery.webp" muted loop playsinline preload="auto"><source src="07-gallery.mp4" type="video/mp4"></video></div>
+
+  <div class="slide" id="s-hadiah"><video poster="08-gift.webp" muted loop playsinline preload="auto"><source src="08-gift.mp4" type="video/mp4"></video>
+    <button class="copy" id="b1" style="top:57.6%">Salin</button>
+    <button class="copy" id="b2" style="top:82.7%">Salin</button>
+  </div>
+
+  <section id="rsvp">
+    <h2>Konfirmasi &amp; Ucapan</h2>
+    <p>Isi kehadiran Anda dan tinggalkan doa untuk kami.</p>
+    <form id="form" autocomplete="off">
+      <input id="nm" placeholder="Nama Anda" required maxlength="80">
+      <select id="st"><option>Hadir</option><option>Tidak hadir</option></select>
+      <select id="jm"><option>1 orang</option><option>2 orang</option><option>3 orang</option><option>4 orang</option></select>
+      <textarea id="ms" rows="3" placeholder="Ucapan dan doa untuk kami" maxlength="300"></textarea>
+      <input id="hp" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+      <button class="btn" id="sendBtn" type="submit">Kirim</button>
+    </form>
+    <div id="wishes"></div>
+  </section>
+
+  <div class="slide"><video poster="09-closing.webp" muted loop playsinline preload="auto"><source src="09-closing.mp4" type="video/mp4"></video></div>
+</main>
+
+<script>
+/* ====== UBAH DATA DI SINI ====== */
+const DATA = {
+  tanggal: "2026-11-30T09:00:00+07:00",      // tanggal & jam acara (jam belum tertulis di desain, sesuaikan)
+  kalenderMulai: "20261130T020000Z", kalenderAkhir: "20261130T060000Z",   // waktu UTC (09.00 WIB = 02.00Z)
+  judulKalender: "Pernikahan Kinan & Rian",
+  musik: "musik.mp3",
+  lokasi: "Park Hyatt Jakarta",
+  rekening: ["123456789", "123456789"],      // kartu atas, kartu bawah (samakan dengan desain)
+  api: "https://script.google.com/macros/s/AKfycbySWNnULPpIg0Ji_e3Bo4DeAFz09Q7_uey1Sb6tDPZk04nOvjxMMQzc6Q3AI7hizk-T/exec"   // Apps Script (sementara masih sama dengan undangan sebelumnya)
+};
+/* =============================== */
+
+const $ = s => document.querySelector(s);
+const toast = t => { const e=$('#toast'); e.textContent=t; e.classList.add('on'); setTimeout(()=>e.classList.remove('on'),1800); };
+
+const to = new URLSearchParams(location.search).get('to');
+if (to) $('#guest').textContent = to.slice(0,60);
+
+$('#saveDate').href = 'https://www.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(DATA.judulKalender)+'&dates='+DATA.kalenderMulai+'/'+DATA.kalenderAkhir;
+$('#maps').href = 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(DATA.lokasi);
+['b1','b2'].forEach((id,i)=>{ $('#'+id).onclick=()=>navigator.clipboard.writeText(DATA.rekening[i]).then(()=>toast('Nomor tersalin')).catch(()=>toast('Gagal menyalin')); });
+
+// Countdown di kotak biru
+const cd=$('#cd');
+function tick(){
+  let d=new Date(DATA.tanggal)-Date.now(); if(d<0)d=0;
+  cd.innerHTML=[['Hari',864e5],['Jam',36e5],['Menit',6e4],['Detik',1e3]].map(([l,m])=>{const x=Math.floor(d/m);d-=x*m;return `<div><b>${String(x).padStart(2,'0')}</b><span>${l}</span></div>`}).join('');
+}
+tick(); setInterval(tick,1000);
+
+// Halaman muncul halus + video main hanya saat terlihat
+let started=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target.querySelector('video');
+  if(e.isIntersecting){ e.target.classList.add('show'); if(v&&started){ v.currentTime=0; v.play().catch(()=>{}); } }
+  else if(v) v.pause();
+}),{threshold:.3});
+document.querySelectorAll('.slide').forEach(e=>io.observe(e));
+
+// Musik
+const mb=$('#music'); const audio=new Audio(DATA.musik); audio.loop=true; mb.style.display='block';
+audio.onerror=()=>toast('File musik belum ada di GitHub');
+mb.onclick=()=>{ if(audio.paused){audio.play();mb.classList.add('spin');}else{audio.pause();mb.classList.remove('spin');} };
+
+// Ketuk cover: musik mulai, halaman pertama (amplop terbuka) main
+const cover=$('#cover');
+cover.onclick=()=>{
+  if(cover.classList.contains('open')) return;
+  cover.classList.add('open'); document.body.classList.remove('lock');
+  started=true; mbtn.style.display='flex';
+  audio.play().then(()=>mb.classList.add('spin')).catch(()=>{});
+  document.querySelectorAll('.slide').forEach(s=>{ const r=s.getBoundingClientRect(); if(r.top<innerHeight*.7&&r.bottom>0){ const v=s.querySelector('video'); if(v){ v.currentTime=0; v.play().catch(()=>{}); } } });
+  setTimeout(()=>cover.querySelector('video').pause(),1100);
+};
+
+// Menu navigasi melayang
+const menu=$('#menu'), mbtn=$('#menuBtn');
+mbtn.onclick=e=>{ e.stopPropagation(); menu.classList.toggle('open'); };
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{ menu.classList.remove('open'); document.getElementById(a.dataset.t).scrollIntoView({behavior:'smooth',block:'start'}); });
+document.addEventListener('click',e=>{ if(!menu.contains(e.target)) menu.classList.remove('open'); });
+
+// RSVP + ucapan yang tampil untuk semua tamu
+const wl=$('#wishes'), WK='wishes_local';
+function ago(t){const s=(Date.now()-new Date(t))/1000; if(isNaN(s))return''; if(s<60)return'baru saja'; if(s<3600)return Math.floor(s/60)+' menit lalu'; if(s<86400)return Math.floor(s/3600)+' jam lalu'; return Math.floor(s/86400)+' hari lalu';}
+function render(list){
+  wl.textContent='';
+  if(!list.length){const p=document.createElement('p');p.textContent='Jadilah yang pertama memberi ucapan.';wl.appendChild(p);return;}
+  list.forEach(w=>{const d=document.createElement('div');d.className='w';
+    const n=document.createElement('b');n.textContent=w.nama;
+    const s=document.createElement('span');s.textContent=(w.status==='Hadir'?'Hadir':'Tidak hadir')+' · '+ago(w.t);
+    d.append(n,s); if(w.ucapan){const p=document.createElement('p');p.textContent=w.ucapan;d.appendChild(p);} wl.appendChild(d);});
+}
+async function load(){
+  try{
+    if(DATA.api){ const r=await fetch(DATA.api+'?t='+Date.now()); render(await r.json()); }
+    else render(JSON.parse(localStorage.getItem(WK)||'[]'));
+  }catch(err){ wl.textContent='Ucapan belum bisa dimuat.'; }
+}
+$('#form').onsubmit=async e=>{
+  e.preventDefault();
+  if($('#hp').value) return;
+  if(Date.now()-(+localStorage.getItem('wl_t')||0)<20000){ toast('Tunggu sebentar ya'); return; }
+  const d={nama:$('#nm').value.trim(),status:$('#st').value,jumlah:$('#jm').value,ucapan:$('#ms').value.trim()};
+  const b=$('#sendBtn'); b.disabled=true; b.textContent='Mengirim...';
+  try{
+    if(DATA.api){
+      await fetch(DATA.api,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)});
+      await new Promise(r=>setTimeout(r,1000));
+    }else{
+      const l=JSON.parse(localStorage.getItem(WK)||'[]'); l.unshift({...d,t:new Date().toISOString()}); localStorage.setItem(WK,JSON.stringify(l.slice(0,50)));
+    }
+    localStorage.setItem('wl_t',Date.now()); $('#form').reset(); toast('Terima kasih, terkirim'); await load();
+  }catch(err){ toast('Gagal mengirim, coba lagi'); }
+  b.disabled=false; b.textContent='Kirim';
+};
+load();
+</script>
+</body>
+</html>
